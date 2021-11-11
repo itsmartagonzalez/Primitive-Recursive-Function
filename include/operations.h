@@ -19,38 +19,8 @@ fun<T> combination(fun<T> f, fun<T> g) {
 }
 
 template <typename T>
-std::vector<T> suma(std::vector<T> a) {
-  std::vector<T> vec;
-  vec.push_back(a[0] + 4);
-  return vec;
-}
-
-template <typename T>
-std::vector<T> mul(std::vector<T> a) {
-  std::vector<T> vec;
-  vec.push_back(a[0] * a[1]);
-  return vec;
-}
-
-template <typename T>
 fun<T> composition(fun<T> f, fun<T> g) {
-  return [&](std::vector<T> p) {
-    return f(g(p));
+  return [&](std::vector<T> args) {
+    return f(g(args));
   };
-}
-
-
-
-
-
-int main() {
-  std::vector<int> y = {3, 2};
-  auto x = composition<int>(suma<int>, mul<int>)(y);
-  std::cout << "\n" << x[0];
-  auto m = combination<int>(suma<int>, mul<int>)(y);
-  std::cout << "\n(";
-  for (auto w : m) {
-    std::cout << ", " << w;
-  }
-  std::cout << ")";
 }
