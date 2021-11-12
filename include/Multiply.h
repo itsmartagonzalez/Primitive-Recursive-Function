@@ -1,17 +1,14 @@
-#ifndef ADD_H
-#define ADD_H
-#include <iostream>
-#include "ComplexPRFs.h"
-#include "BasicPRFs.h"
-#include "operations.h"
+#ifndef MULTIPLY_H
+#define MULTIPLY_H
+#include "Add.h"
 #pragma once
 
 template <typename T>
-class Add : public ComplexPRFs<T> {
+class Multiply : public ComplexPRFs<T> {
 
   public:
-    Add() {}
-    ~Add() {}
+    Multiply() {}
+    ~Multiply() {}
     static std::vector<T> solve(std::vector<T>);
 
   protected:
@@ -19,10 +16,10 @@ class Add : public ComplexPRFs<T> {
     static std::vector<T> recursiveCase(std::vector<T>);
 
 };
-#endif //ADD_H
+#endif //MULTIPLY_H
 
 template <typename T>
-std::vector<T> Add<T>::solve(std::vector<T> args) {
+std::vector<T> Multiply<T>::solve(std::vector<T> args) {
   if (args[1] == 0) {
     return baseCase(args);
   }
@@ -30,20 +27,19 @@ std::vector<T> Add<T>::solve(std::vector<T> args) {
 }
 
 template <typename T>
-std::vector<T> Add<T>::baseCase(std::vector<T> args) {
-  //args.push_back(0);
-  return BasicPRFs::projection<2>(args);
+std::vector<T> Multiply<T>::baseCase(std::vector<T> args) {
+  return BasicPRFs::zero(args);
 }
 
 template <typename T>
-std::vector<T> Add<T>::recursiveCase(std::vector<T> args) {
+std::vector<T> Multiply<T>::recursiveCase(std::vector<T> args) {
   std::vector<T> aux = args;
-  aux[1] = aux[1] - 1;
+  aux[1]--;
   std::vector<T> recursive = solve(aux);
   aux.resize(recursive.size()  + args.size());
   std::copy(recursive.begin(), recursive.end(), aux.begin() + args.size());
-  //aux.push_back(2);
-  auto x = composition<T>(BasicPRFs::successor, BasicPRFs::projection<2>)(aux);
+  
+  auto x = composition<T>(Add<T>::solve, combination<T>(BasicPRFs::projection<0>, BasicPRFs::projection<2>))(aux);
   return x;
 }
 

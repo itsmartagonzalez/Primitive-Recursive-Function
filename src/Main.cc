@@ -1,8 +1,10 @@
 #include "Add.h"
+#include "Multiply.h"
 #include <iostream>
 
 int main() {
   std::vector<int> x = {5, 7};
   Add<int> add;
-  std::cout << "\n" << add.solve(x)[0];
+  Multiply<int> multiply;
+  std::cout << "\n" << multiply.solve(x)[0];
 }

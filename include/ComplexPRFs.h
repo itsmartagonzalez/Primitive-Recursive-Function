@@ -10,11 +10,11 @@ class ComplexPRFs : public PRF {
   public:
     ComplexPRFs() {}
     ~ComplexPRFs() {}
-    virtual std::vector<T> solve(std::vector<T>) = 0;
+    static std::vector<T> solve(std::vector<T>);
 
   protected:
-    virtual std::vector<T> baseCase(std::vector<T>) = 0;
-    virtual std::vector<T> recursiveCase(std::vector<T>) = 0;
+    static std::vector<T> baseCase(std::vector<T>);
+    static std::vector<T> recursiveCase(std::vector<T>);
 
 };
 #endif //COMPLEXPRFS_H
