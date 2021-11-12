@@ -38,8 +38,6 @@ std::vector<T> Multiply<T>::recursiveCase(std::vector<T> args) {
   std::vector<T> recursive = solve(aux);
   aux.resize(recursive.size()  + args.size());
   std::copy(recursive.begin(), recursive.end(), aux.begin() + args.size());
-  Add<T> add;
-  auto x = composition<T>(Add<T>::solve, combination<T>(BasicPRFs::projection<0>, BasicPRFs::projection<2>))(aux);
-  return x;
+  return composition<T>(Add<T>::solve, combination<T>(BasicPRFs::projection<0>, BasicPRFs::projection<2>))(aux);
 }
 

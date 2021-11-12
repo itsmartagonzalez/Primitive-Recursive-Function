@@ -37,7 +37,7 @@ std::vector<T> Add<T>::baseCase(std::vector<T> args) {
 template <typename T>
 std::vector<T> Add<T>::recursiveCase(std::vector<T> args) {
   std::vector<T> aux = args;
-  aux[1] = aux[1] - 1;
+  aux[1]--;
   std::vector<T> recursive = solve(aux);
   aux.resize(recursive.size()  + args.size());
   std::copy(recursive.begin(), recursive.end(), aux.begin() + args.size());

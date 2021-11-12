@@ -6,10 +6,8 @@
 #pragma once
 
 class PRF {
-protected:
-  /* data */
-public:
-  virtual ~PRF() = default;
+  public:
+    virtual ~PRF() = default;
 };
 
 
