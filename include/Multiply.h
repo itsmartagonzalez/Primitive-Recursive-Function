@@ -18,6 +18,11 @@ class Multiply : public ComplexPRFs<T> {
 };
 #endif //MULTIPLY_H
 
+
+/*
+  Base case → mult(x, 0) = z(x)
+  Recursive case → mult(x, s(y)) = suma ∘ (P₁ x P₃)(x, y, mult(x, y))
+*/
 template <typename T>
 std::vector<T> Multiply<T>::solve(std::vector<T> args) {
   if (args[1] == 0) {

@@ -18,6 +18,10 @@ class Power : public ComplexPRFs<T> {
 };
 #endif //POWER_H
 
+/*
+  Base case → potencia(x, 0) = s ∘ z(x)
+  Recursive case → potencia(x, s(y)) = mult ∘ (P₁ x P₃)(x, y, potencia(x, y))
+*/
 template <typename T>
 std::vector<T> Power<T>::solve(std::vector<T> args) {
   if (args[1] == 0) {

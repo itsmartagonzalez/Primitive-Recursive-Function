@@ -21,6 +21,10 @@ class Add : public ComplexPRFs<T> {
 };
 #endif //ADD_H
 
+/*
+  Base case → suma(x, 0) = P₁(x)
+  Recursive case → suma(x, s(y)) = s ∘ P₃(x, y, suma(x, y))
+*/
 template <typename T>
 std::vector<T> Add<T>::solve(std::vector<T> args) {
   if (args[1] == 0) {
@@ -41,7 +45,6 @@ std::vector<T> Add<T>::recursiveCase(std::vector<T> args) {
   std::vector<T> recursive = solve(aux);
   aux.resize(recursive.size()  + args.size());
   std::copy(recursive.begin(), recursive.end(), aux.begin() + args.size());
-  auto x = composition<T>(BasicPRFs::successor, BasicPRFs::projection<2>)(aux);
-  return x;
+  return composition<T>(BasicPRFs::successor, BasicPRFs::projection<2>)(aux);
 }
 

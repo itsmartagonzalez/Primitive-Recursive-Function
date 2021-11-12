@@ -18,6 +18,7 @@ class BasicPRFs : public PRF {
 #endif //BASICPRFS_H
 
 
+// Given an index n and a vector of arguments args it returns args[n]
 template <int I>
 std::vector<int> BasicPRFs::projection(std::vector<int> v) {
   return std::vector<int>(1, v[I]);
