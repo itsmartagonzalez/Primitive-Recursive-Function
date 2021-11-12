@@ -31,8 +31,7 @@ std::vector<T> Add<T>::solve(std::vector<T> args) {
 
 template <typename T>
 std::vector<T> Add<T>::baseCase(std::vector<T> args) {
-  //args.push_back(0);
-  return BasicPRFs::projection<2>(args);
+  return BasicPRFs::projection<0>(args);
 }
 
 template <typename T>
@@ -42,7 +41,6 @@ std::vector<T> Add<T>::recursiveCase(std::vector<T> args) {
   std::vector<T> recursive = solve(aux);
   aux.resize(recursive.size()  + args.size());
   std::copy(recursive.begin(), recursive.end(), aux.begin() + args.size());
-  //aux.push_back(2);
   auto x = composition<T>(BasicPRFs::successor, BasicPRFs::projection<2>)(aux);
   return x;
 }

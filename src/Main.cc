@@ -1,10 +1,12 @@
 #include "Add.h"
 #include "Multiply.h"
+#include "Power.h"
 #include <iostream>
 
 int main() {
-  std::vector<int> x = {5, 7};
+  std::vector<int> x = {2, 8};
   Add<int> add;
   Multiply<int> multiply;
-  std::cout << "\n" << multiply.solve(x)[0];
+  Power<int> pow;
+  std::cout << "\n" << pow.solve(x)[0];
 }
